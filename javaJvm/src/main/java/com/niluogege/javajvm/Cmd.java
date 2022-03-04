@@ -1,10 +1,14 @@
-package com.niluogege.javajvm.day1;
+package com.niluogege.javajvm;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 
 import java.util.List;
 
+/**
+ * http://www.itstack.org
+ * create by fuzhengwei on 2019/4/24
+ */
 public class Cmd {
 
     @Parameter(names = {"-?", "-help"}, description = "print help message", order = 3, help = true)

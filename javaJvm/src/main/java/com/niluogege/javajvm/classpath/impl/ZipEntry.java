@@ -1,12 +1,14 @@
-package com.niluogege.javajvm.day1.classpath.impl;
+package com.niluogege.javajvm.classpath.impl;
 
 
-import com.niluogege.javajvm.day1.classpath.Entry;
+import com.niluogege.javajvm.classpath.Entry;
 
 import java.io.IOException;
 import java.nio.file.*;
 
 /**
+ * http://www.itstack.org
+ * create by fuzhengwei on 2019/4/24
  * zip/zar文件形式类路径
  */
 public class ZipEntry implements Entry {

@@ -1,13 +1,17 @@
-package com.niluogege.javajvm.day1.classpath.impl;
+package com.niluogege.javajvm.classpath.impl;
 
 
-import com.niluogege.javajvm.day1.classpath.Entry;
+import com.niluogege.javajvm.classpath.Entry;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * http://www.itstack.org
+ * create by fuzhengwei on 2019/4/24
+ */
 public class CompositeEntry implements Entry {
 
     private final List<Entry> entryList = new ArrayList<>();

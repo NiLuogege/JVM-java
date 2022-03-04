@@ -1,14 +1,15 @@
-package com.niluogege.javajvm.day1.classpath;
+package com.niluogege.javajvm.classpath;
 
 
-import com.niluogege.javajvm.day1.classpath.impl.WildcardEntry;
+import com.niluogege.javajvm.classpath.impl.WildcardEntry;
 
 import java.io.File;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 /**
- * 类路径
+ * http://www.itstack.org
+ * create by fuzhengwei on 2019/4/24
  */
 public class Classpath {
 
@@ -17,7 +18,7 @@ public class Classpath {
     private Entry userClasspath;       //用户类路径
 
     public Classpath(String jreOption, String cpOption) {
-        //启动类&扩展类 "C:\Program Files\Java\jdk1.8.0_161\jre"
+        //启动类&扩展类 "C:\Program Files\Java\jre-9.0.4"
         bootstrapAndExtensionClasspath(jreOption);
         //用户类 E:\..\org\itstack\demo\test\HelloWorld
         parseUserClasspath(cpOption);

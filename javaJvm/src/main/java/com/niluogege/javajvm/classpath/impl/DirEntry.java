@@ -1,7 +1,7 @@
-package com.niluogege.javajvm.day1.classpath.impl;
+package com.niluogege.javajvm.classpath.impl;
 
 
-import com.niluogege.javajvm.day1.classpath.Entry;
+import com.niluogege.javajvm.classpath.Entry;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -9,6 +9,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 /**
+ * http://www.itstack.org
+ * create by fuzhengwei on 2019/4/24
  * 目录形式的类路径
  */
 public class DirEntry implements Entry {
