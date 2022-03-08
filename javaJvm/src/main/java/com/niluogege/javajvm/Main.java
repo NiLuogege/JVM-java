@@ -7,7 +7,9 @@ import com.niluogege.javajvm.classpath.Classpath;
 import java.util.Arrays;
 
 /**
- * program arguments：-Xjre "C:\Program Files\Java\jdk1.8.0_161\jre" E:\itstack\git\istack-demo\itstack-demo-jvm\itstack-demo-jvm-02\target\test-classes\org\itstack\demo\test\HelloWorld
+ * program arguments：
+ * -Xjre "D:\soft\jre-8-8u171-64\jre" java.lang.String
+ * -Xjre "D:\soft\jre-8-8u171-64\jre" E:\111work\code\code_me\myGitHub\JVM-java\javaJvm\target\test-classes\com\niluogege\javajvm\HelloWorld
  */
 public class Main {
 
