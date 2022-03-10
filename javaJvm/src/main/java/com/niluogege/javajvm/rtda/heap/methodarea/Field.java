@@ -1,4 +1,7 @@
 package com.niluogege.javajvm.rtda.heap.methodarea;
 
-public class Field {
+public class Field extends ClassMember{
+
+
+
 }

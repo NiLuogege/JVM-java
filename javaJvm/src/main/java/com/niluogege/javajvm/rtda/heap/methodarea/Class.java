@@ -10,7 +10,7 @@ public class Class {
     public String superClassName;
     public String[] interfaceNames;
     public RunTimeConstantPool runTimeConstantPool;
-    public Field[] files;
+    public Field[] fields;
     public Method[] method;
     public ClassLoader classLoader;
     public Class superClass;
@@ -26,5 +26,11 @@ public class Class {
         this.superClassName=classFile.superClassName();
         this.interfaceNames=classFile.interfaceNames();
         this.runTimeConstantPool=new RunTimeConstantPool(this,classFile.constantPool());
+    }
+
+    public String getPackageName() {
+        int i = this.name.lastIndexOf("/");
+        if (i >= 0) return this.name;
+        return "";
     }
 }
