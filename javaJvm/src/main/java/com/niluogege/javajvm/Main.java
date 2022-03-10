@@ -3,6 +3,8 @@ package com.niluogege.javajvm;
 import com.niluogege.javajvm.classfile.ClassFile;
 import com.niluogege.javajvm.classfile.MemberInfo;
 import com.niluogege.javajvm.classpath.Classpath;
+import com.niluogege.javajvm.rtda.heap.ClassLoader;
+import com.niluogege.javajvm.rtda.heap.methodarea.Class;
 
 import java.util.Arrays;
 
@@ -29,13 +31,17 @@ public class Main {
 
     private static void startJVM(Cmd cmd) {
         Classpath classpath = new Classpath(cmd.jre, cmd.classpath);
-        System.out.printf("classpath：%s class：%s args：%s\n",
-                classpath, cmd.getMainClass(), cmd.getAppArgs());
+        System.out.printf("classpath：%s class：%s args：%s\n", classpath, cmd.getMainClass(), cmd.getAppArgs());
+
+        ClassLoader classLoader = new ClassLoader(classpath);
+
         //获取className
         String className = cmd.getMainClass().replace(".", "/");
-        ClassFile classFile = loadClass(className, classpath);
-        assert classFile != null;
-        printClassInfo(classFile);
+        Class clazz = classLoader.loadClass(className);
+
+//        ClassFile classFile = loadClass(className, classpath);
+//        assert classFile != null;
+//        printClassInfo(classFile);
     }
 
     private static ClassFile loadClass(String className, Classpath classpath) {
@@ -57,12 +63,12 @@ public class Main {
         System.out.println("interfaces：" + Arrays.toString(cf.interfaceNames()));
         System.out.println("fields count：" + cf.fields().length);
         for (MemberInfo memberInfo : cf.fields()) {
-            System.out.format("fieldsInfo %s \t\t %s \t\t %s\n", memberInfo.name(), memberInfo.descriptor(),memberInfo.toString());
+            System.out.format("fieldsInfo %s \t\t %s \t\t %s\n", memberInfo.name(), memberInfo.descriptor(), memberInfo.toString());
         }
 
         System.out.println("methods count: " + cf.methods().length);
         for (MemberInfo memberInfo : cf.methods()) {
-            System.out.format("%s \t\t %s  \t\t %s\n", memberInfo.name(), memberInfo.descriptor(),memberInfo.toString());
+            System.out.format("%s \t\t %s  \t\t %s\n", memberInfo.name(), memberInfo.descriptor(), memberInfo.toString());
         }
     }
 
