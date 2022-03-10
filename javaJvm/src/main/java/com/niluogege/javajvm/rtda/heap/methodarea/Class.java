@@ -4,6 +4,8 @@ import com.niluogege.javajvm.classfile.ClassFile;
 import com.niluogege.javajvm.rtda.heap.ClassLoader;
 import com.niluogege.javajvm.rtda.heap.constantpool.RunTimeConstantPool;
 
+import java.util.Arrays;
+
 public class Class {
     public int accessFlags;
     public String name;
@@ -32,5 +34,25 @@ public class Class {
         int i = this.name.lastIndexOf("/");
         if (i >= 0) return this.name;
         return "";
+    }
+
+
+    @Override
+    public String toString() {
+        return "Class{" +
+                "accessFlags=" + accessFlags +
+                ", name='" + name + '\'' +
+                ", superClassName='" + superClassName + '\'' +
+                ", interfaceNames=" + Arrays.toString(interfaceNames) +
+                ", runTimeConstantPool=" + runTimeConstantPool +
+                ", fields=" + Arrays.toString(fields) +
+                ", method=" + Arrays.toString(method) +
+                ", classLoader=" + classLoader +
+                ", superClass=" + superClass +
+                ", interfaces=" + Arrays.toString(interfaces) +
+                ", instanceSlotCount=" + instanceSlotCount +
+                ", staticSlotCount=" + staticSlotCount +
+                ", staticVars=" + staticVars +
+                '}';
     }
 }

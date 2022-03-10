@@ -46,16 +46,16 @@ public class RunTimeConstantPool {
                     break;
                 case ConstantInfo.CONSTANT_TAG_CLASS:
                     ConstantClassInfo classInfo = (ConstantClassInfo) constantInfo;
-//                    this.constants[i] = ClassRef.newClassRef(this, classInfo);
+                    this.constants[i] = ClassRef.newClassRef(this, classInfo);
                     break;
                 case ConstantInfo.CONSTANT_TAG_FIELDREF:
-//                    this.constants[i] = FieldRef.newFieldRef(this, (ConstantFieldRefInfo) constantInfo);
+                    this.constants[i] = FieldRef.newFieldRef(this, (ConstantFieldRefInfo) constantInfo);
                     break;
                 case ConstantInfo.CONSTANT_TAG_INTERFACEMETHODREF:
-//                    this.constants[i] = InterfaceMethodRef.newInterfaceMethodRef(this, (ConstantInterfaceMethodRefInfo) constantInfo);
+                    this.constants[i] = InterfaceMethodRef.newInterfaceMethodRef(this, (ConstantInterfaceMethodRefInfo) constantInfo);
                     break;
                 case ConstantInfo.CONSTANT_TAG_METHODREF:
-//                    this.constants[i] = MethodRef.newMethodRef(this, (ConstantMethodRefInfo) constantInfo);
+                    this.constants[i] = MethodRef.newMethodRef(this, (ConstantMethodRefInfo) constantInfo);
                     break;
                 default:
             }

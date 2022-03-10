@@ -4,6 +4,7 @@ import com.niluogege.javajvm.classfile.ClassFile;
 import com.niluogege.javajvm.classpath.Classpath;
 import com.niluogege.javajvm.rtda.heap.methodarea.Class;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,6 +18,7 @@ public class ClassLoader {
 
     public ClassLoader(Classpath classpath) {
         this.classpath=classpath;
+        classMap=new HashMap<>();
     }
 
     public Class loadClass(String className) {
@@ -35,17 +37,17 @@ public class ClassLoader {
      */
     private Class loadNonArrayClass(String className) throws Exception{
         byte[] bytes = classpath.readClass(className);
-        if (null!=bytes){
+        if (null==bytes){
             throw new ClassNotFoundException(className);
         }
         //bytes数组转为 Class
         Class clazz = defineClass(bytes);
-        return null;
+        return clazz;
     }
 
     private Class defineClass(byte[] bytes) {
         ClassFile classFile = new ClassFile(bytes);
         Class clazz = new Class(classFile);
-        return null;
+        return clazz;
     }
 }

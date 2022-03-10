@@ -39,6 +39,8 @@ public class Main {
         String className = cmd.getMainClass().replace(".", "/");
         Class clazz = classLoader.loadClass(className);
 
+        System.out.println("clazz="+clazz);
+
 //        ClassFile classFile = loadClass(className, classpath);
 //        assert classFile != null;
 //        printClassInfo(classFile);
