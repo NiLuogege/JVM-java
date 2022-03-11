@@ -1,5 +1,7 @@
 package com.niluogege.javajvm.rtda;
 
+import com.niluogege.javajvm.rtda.heap.methodarea.Method;
+
 /**
  * 线程 ： 线程中要有 java虚拟机栈 和 寄存器
  */
@@ -30,8 +32,8 @@ public class Thread {
     }
 
 
-    public Frame newFrame(int maxLocal, int maxStack) {
-        return new Frame(this, maxLocal, maxStack);
+    public Frame newFrame(Method method) {
+        return new Frame(this, method);
     }
 
 }

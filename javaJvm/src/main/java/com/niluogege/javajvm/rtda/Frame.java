@@ -1,5 +1,6 @@
 package com.niluogege.javajvm.rtda;
 
+import com.niluogege.javajvm.rtda.heap.methodarea.Method;
 import org.springframework.cglib.core.Local;
 
 /**
@@ -19,10 +20,13 @@ public class Frame {
     //当前线程
     private Thread thread;
 
-    public Frame(Thread thread, int maxLocal, int maxStack) {
+    private Method method;
+
+    public Frame(Thread thread, Method method) {
         this.thread = thread;
-        this.localVars = new LocalVars(maxLocal);
-        this.operandStack = new OperandStack(maxStack);
+        this.method = method;//当前方法
+        this.localVars = new LocalVars(method.maxLocals);
+        this.operandStack = new OperandStack(method.maxStack);
     }
 
     public LocalVars getLocalVars() {

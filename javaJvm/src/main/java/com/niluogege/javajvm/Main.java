@@ -5,6 +5,7 @@ import com.niluogege.javajvm.classfile.MemberInfo;
 import com.niluogege.javajvm.classpath.Classpath;
 import com.niluogege.javajvm.rtda.heap.ClassLoader;
 import com.niluogege.javajvm.rtda.heap.methodarea.Class;
+import com.niluogege.javajvm.rtda.heap.methodarea.Method;
 
 import java.util.Arrays;
 
@@ -38,12 +39,15 @@ public class Main {
         //获取className
         String className = cmd.getMainClass().replace(".", "/");
         Class clazz = classLoader.loadClass(className);
+//        System.out.println("clazz="+clazz);
+        Method mainMethod = clazz.getMainMethod();
+        if (null==mainMethod){
+            throw new RuntimeException("Main method not found in class " + cmd.getMainClass());
+        }
 
-        System.out.println("clazz="+clazz);
+        //开始解析
+        new Interpret(mainMethod);
 
-//        ClassFile classFile = loadClass(className, classpath);
-//        assert classFile != null;
-//        printClassInfo(classFile);
     }
 
     private static ClassFile loadClass(String className, Classpath classpath) {
@@ -56,22 +60,5 @@ public class Main {
         }
     }
 
-    private static void printClassInfo(ClassFile cf) {
-        System.out.println("version: " + cf.majorVersion() + "." + cf.minorVersion());
-        System.out.println("constants count：" + cf.constantPool());
-        System.out.format("access flags：0x%x\n", cf.accessFlags());
-        System.out.println("this class：" + cf.className());
-        System.out.println("super class：" + cf.superClassName());
-        System.out.println("interfaces：" + Arrays.toString(cf.interfaceNames()));
-        System.out.println("fields count：" + cf.fields().length);
-        for (MemberInfo memberInfo : cf.fields()) {
-            System.out.format("fieldsInfo %s \t\t %s \t\t %s\n", memberInfo.name(), memberInfo.descriptor(), memberInfo.toString());
-        }
-
-        System.out.println("methods count: " + cf.methods().length);
-        for (MemberInfo memberInfo : cf.methods()) {
-            System.out.format("%s \t\t %s  \t\t %s\n", memberInfo.name(), memberInfo.descriptor(), memberInfo.toString());
-        }
-    }
 
 }
