@@ -12,9 +12,9 @@ import com.niluogege.javajvm.classfile.constantpool.ConstantPool;
 public class CodeAttribute implements AttributeInfo {
 
     private ConstantPool constantPool;
-    private int maxStack;
-    private int maxLocals;
-    private byte[] data;
+    private int maxStack;//本地方法栈 最大栈长
+    private int maxLocals;//本地变量表最大长度
+    private byte[] data;//操作码字节流
     private ExceptionTableEntry[] exceptionTable;
     private AttributeInfo[] attributes;
 

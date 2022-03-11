@@ -2,6 +2,7 @@ package com.niluogege.javajvm.rtda.heap.methodarea;
 
 import com.niluogege.javajvm.classfile.ClassFile;
 import com.niluogege.javajvm.rtda.heap.ClassLoader;
+import com.niluogege.javajvm.rtda.heap.constantpool.AccessFlags;
 import com.niluogege.javajvm.rtda.heap.constantpool.RunTimeConstantPool;
 
 import java.util.Arrays;
@@ -13,7 +14,7 @@ public class Class {
     public String[] interfaceNames;
     public RunTimeConstantPool runTimeConstantPool;
     public Field[] fields;
-    public Method[] method;
+    public Method[] methods;
     public ClassLoader classLoader;
     public Class superClass;
     public Class[] interfaces;
@@ -28,6 +29,52 @@ public class Class {
         this.superClassName=classFile.superClassName();
         this.interfaceNames=classFile.interfaceNames();
         this.runTimeConstantPool=new RunTimeConstantPool(this,classFile.constantPool());
+        this.fields=new Field().newFields(this,classFile.fields());
+        this.methods =new Method().newMethods(this,classFile.methods());
+    }
+
+    public boolean isPublic() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_PUBLIC);
+    }
+
+    public boolean isFinal() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_FINAL);
+    }
+
+    public boolean isSuper() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_SUPER);
+    }
+
+    public boolean isInterface() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_INTERFACE);
+    }
+
+    public boolean isAbstract() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_ABSTRACT);
+    }
+
+    public boolean isSynthetic() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_SYNTHETIC);
+    }
+
+    public boolean isAnnotation() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_ANNOTATION);
+    }
+
+    public boolean isEnum() {
+        return 0 != (this.accessFlags & AccessFlags.ACC_ENUM);
+    }
+
+    public RunTimeConstantPool constantPool() {
+        return this.runTimeConstantPool;
+    }
+
+    public Slots staticVars() {
+        return this.staticVars;
+    }
+
+    public boolean isAccessibleTo(Class other) {
+        return this.isPublic() || this.getPackageName().equals(other.getPackageName());
     }
 
     public String getPackageName() {
@@ -36,7 +83,67 @@ public class Class {
         return "";
     }
 
+    public Method getMainMethod() {
+        return this.getStaticMethod("main", "([Ljava/lang/String;)V");
+    }
 
+    private Method getStaticMethod(String name, String descriptor) {
+        for (Method method : this.methods) {
+            if (method.name.equals(name) && method.descriptor.equals(descriptor)) {
+                return method;
+            }
+        }
+        return null;
+    }
+
+    public Object newObject() {
+        return new Object(this);
+    }
+
+    /**
+     * 是否是  other 的子类
+     * @param other
+     * @return
+     */
+    public boolean isAssignableFrom(Class other) {
+        if (this == other) return true;
+        if (!other.isInterface()) {
+            return this.isSubClassOf(other);
+        } else {
+            return this.isImplements(other);
+        }
+    }
+
+    public boolean isSubClassOf(Class other) {
+        for (Class c = this.superClass; c != null; c = c.superClass) {
+            if (c == other) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean isImplements(Class other) {
+
+        for (Class c = this; c != null; c = c.superClass) {
+            for (Class clazz : c.interfaces) {
+                if (clazz == other || clazz.isSubInterfaceOf(other)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+
+    }
+
+    public boolean isSubInterfaceOf(Class iface) {
+        for (Class superInterface : this.interfaces) {
+            if (superInterface == iface || superInterface.isSubInterfaceOf(iface)) {
+                return true;
+            }
+        }
+        return false;
+    }
     @Override
     public String toString() {
         return "Class{" +
@@ -46,7 +153,7 @@ public class Class {
                 ", interfaceNames=" + Arrays.toString(interfaceNames) +
                 ", runTimeConstantPool=" + runTimeConstantPool +
                 ", fields=" + Arrays.toString(fields) +
-                ", method=" + Arrays.toString(method) +
+                ", method=" + Arrays.toString(methods) +
                 ", classLoader=" + classLoader +
                 ", superClass=" + superClass +
                 ", interfaces=" + Arrays.toString(interfaces) +
