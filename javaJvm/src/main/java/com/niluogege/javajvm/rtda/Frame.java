@@ -22,6 +22,8 @@ public class Frame {
 
     private Method method;
 
+    private int nextPc;
+
     public Frame(Thread thread, Method method) {
         this.thread = thread;
         this.method = method;//当前方法
@@ -39,5 +41,13 @@ public class Frame {
 
     public Thread getThread() {
         return thread;
+    }
+
+    public int nextPc() {
+        return nextPc;
+    }
+
+    public void setNextPc(int nextPc) {
+        this.nextPc = nextPc;
     }
 }
