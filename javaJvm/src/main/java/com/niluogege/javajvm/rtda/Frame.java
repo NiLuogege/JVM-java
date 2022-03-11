@@ -31,7 +31,7 @@ public class Frame {
         this.operandStack = new OperandStack(method.maxStack);
     }
 
-    public LocalVars getLocalVars() {
+    public LocalVars localVars() {
         return localVars;
     }
 

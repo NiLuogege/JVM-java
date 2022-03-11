@@ -22,6 +22,6 @@ public class InstructionNoOperands implements Instruction {
      */
     protected void _istore(Frame frame,int idx){
         int val = frame.operandStack().popInt();
-        frame.getLocalVars().setInt(idx,val);
+        frame.localVars().setInt(idx,val);
     }
 }
