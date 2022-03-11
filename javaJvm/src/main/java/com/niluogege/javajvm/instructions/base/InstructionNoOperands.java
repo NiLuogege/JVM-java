@@ -17,6 +17,21 @@ public class InstructionNoOperands implements Instruction {
         // nothing to do
     }
 
+    protected void _astore(Frame frame, int idx) {
+        Object ref = frame.operandStack().popRef();
+        frame.localVars().setRef(idx, ref);
+    }
+
+    protected void _dstore(Frame frame, int idx) {
+        double val = frame.operandStack().popDouble();
+        frame.localVars().setDouble(idx, val);
+    }
+
+    protected void _fstore(Frame frame, int idx) {
+        float val = frame.operandStack().popFloat();
+        frame.localVars().setFloat(idx, val);
+    }
+
     /**
      * 操作数栈顶数据 存放到 局部变量表idx 位置
      */
@@ -24,4 +39,10 @@ public class InstructionNoOperands implements Instruction {
         int val = frame.operandStack().popInt();
         frame.localVars().setInt(idx,val);
     }
+
+    protected void _lstore(Frame frame, int idx) {
+        long val = frame.operandStack().popLong();
+        frame.localVars().setLong(idx, val);
+    }
+
 }

@@ -10,6 +10,11 @@ import com.niluogege.javajvm.instructions.loads.dload.*;
 import com.niluogege.javajvm.instructions.loads.fload.*;
 import com.niluogege.javajvm.instructions.loads.iload.*;
 import com.niluogege.javajvm.instructions.loads.lload.*;
+import com.niluogege.javajvm.instructions.stores.astore.*;
+import com.niluogege.javajvm.instructions.stores.dstore.*;
+import com.niluogege.javajvm.instructions.stores.fstore.*;
+import com.niluogege.javajvm.instructions.stores.istore.*;
+import com.niluogege.javajvm.instructions.stores.lstore.*;
 
 /**
  * 指令工厂
@@ -127,6 +132,72 @@ public class Factory {
             // 	return caload
             // case 0x35:
             // 	return saload
+            case 0x36:
+                return new ISTORE();
+            case 0x37:
+                return new LSTORE();
+            case 0x38:
+                return new FSTORE();
+            case 0x39:
+                return new DSTORE();
+            case 0x3a:
+                return new ASTORE();
+            case 0x3b:
+                return new ISTORE_0();
+            case 0x3c: //将操作数栈的第一个数据 存放到 局部变量表的  第二个位置上（index 从 0 开始）
+                return new ISTORE_1();
+            case 0x3d: //将 操作数栈的第一个数据 存到 局部变量表的 第三个位置(index 从0 开始)
+                return new ISTORE_2();
+            case 0x3e:
+                return new ISTORE_3();
+            case 0x3f:
+                return new LSTORE_0();
+            case 0x40:
+                return new LSTORE_1();
+            case 0x41:
+                return new LSTORE_2();
+            case 0x42:
+                return new LSTORE_3();
+            case 0x43:
+                return new FSTORE_0();
+            case 0x44:
+                return new FSTORE_1();
+            case 0x45:
+                return new FSTORE_2();
+            case 0x46:
+                return new FSTORE_3();
+            case 0x47:
+                return new DSTORE_0();
+            case 0x48:
+                return new DSTORE_1();
+            case 0x49:
+                return new DSTORE_2();
+            case 0x4a:
+                return new DSTORE_3();
+            case 0x4b:
+                return new ASTORE_0();
+            case 0x4c:
+                return new ASTORE_1();
+            case 0x4d:
+                return new ASTORE_2();
+            case 0x4e:
+                return new ASTORE_3();
+            //case 0x4f:
+            //	return new IASTORE();
+            // case 0x50:
+            // 	return lastore
+            // case 0x51:
+            // 	return fastore
+            // case 0x52:
+            // 	return dastore
+            // case 0x53:
+            // 	return aastore
+            // case 0x54:
+            // 	return bastore
+            // case 0x55:
+            // 	return castore
+            // case 0x56:
+            // 	return sastore
             default:
                 return null;
         }
