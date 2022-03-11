@@ -35,7 +35,7 @@ public class Frame {
         return localVars;
     }
 
-    public OperandStack getOperandStack() {
+    public OperandStack operandStack() {
         return operandStack;
     }
 

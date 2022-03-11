@@ -21,7 +21,7 @@ public class InstructionNoOperands implements Instruction {
      * 操作数栈顶数据 存放到 局部变量表idx 位置
      */
     protected void _istore(Frame frame,int idx){
-        int val = frame.getOperandStack().popInt();
+        int val = frame.operandStack().popInt();
         frame.getLocalVars().setInt(idx,val);
     }
 }
