@@ -45,9 +45,9 @@ public class FieldRef extends MemberRef{
      * 找到目标方法
      */
     private Field lookupField(Class c, String name, String descriptor) {
-        for (Field f : c.fields) {
+        for (Field field : c.fields) {
 
-            if (f.name.equals(name) && field.descriptor.equals(descriptor)){
+            if (field.name.equals(name) && field.descriptor.equals(descriptor)){
                 return field;
             }
         }

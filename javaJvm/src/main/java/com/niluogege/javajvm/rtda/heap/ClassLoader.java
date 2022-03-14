@@ -47,13 +47,35 @@ public class ClassLoader {
         return clazz;
     }
 
-    private Class defineClass(byte[] bytes) {
+    private Class defineClass(byte[] bytes) throws Exception {
         ClassFile classFile = new ClassFile(bytes);
 //        printClassInfo(classFile);
         Class clazz = new Class(classFile);
+        clazz.classLoader=this;
+        //初始化父类
+        resolveSuperClass(clazz);
+        //初始化父接口
+        resolveInterfaces(clazz);
+        this.classMap.put(clazz.name, clazz);
         return clazz;
     }
 
+
+    private void resolveInterfaces(Class clazz) throws Exception {
+        int interfaceCount = clazz.interfaceNames.length;
+        if (interfaceCount > 0) {
+            clazz.interfaces = new Class[interfaceCount];
+            for (int i = 0; i < interfaceCount; i++) {
+                clazz.interfaces[i] = clazz.classLoader.loadClass(clazz.interfaceNames[i]);
+            }
+        }
+    }
+
+    private void resolveSuperClass(Class clazz) throws Exception {
+        if (!clazz.name.equals("java/lang/Object")) {
+            clazz.superClass = clazz.classLoader.loadClass(clazz.superClassName);
+        }
+    }
 
     private static void printClassInfo(ClassFile cf) {
         System.out.println("version: " + cf.majorVersion() + "." + cf.minorVersion());
