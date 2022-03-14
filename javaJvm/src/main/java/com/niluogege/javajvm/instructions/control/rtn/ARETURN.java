@@ -4,7 +4,7 @@ package com.niluogege.javajvm.instructions.control.rtn;
 import com.niluogege.javajvm.instructions.base.InstructionNoOperands;
 import com.niluogege.javajvm.rtda.Frame;
 import com.niluogege.javajvm.rtda.Thread;
-
+import com.niluogege.javajvm.rtda.heap.methodarea.Object;
 /**
  * http://www.itstack.org
  * create by fuzhengwei on 2019/4/27

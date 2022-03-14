@@ -1,5 +1,5 @@
 package com.niluogege.javajvm.rtda;
-
+import com.niluogege.javajvm.rtda.heap.methodarea.Object;
 /**
  * 局部变量表：里面要有 数据（Slot）
  */

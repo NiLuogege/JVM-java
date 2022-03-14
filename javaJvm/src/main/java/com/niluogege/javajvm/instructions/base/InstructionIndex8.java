@@ -1,7 +1,7 @@
 package com.niluogege.javajvm.instructions.base;
 
 import com.niluogege.javajvm.rtda.Frame;
-
+import com.niluogege.javajvm.rtda.heap.methodarea.Object;
 /**
  * 读一个 byte（8位）类型的操作数
  */

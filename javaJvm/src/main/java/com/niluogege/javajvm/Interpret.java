@@ -36,6 +36,13 @@ public class Interpret {
             byte opcode = reader.readByte();
             //将 指令代码 转换为 真正的指令
             Instruction inst = Factory.newInstruction(opcode);
+            if (null == inst) {
+                System.out.format("Unsupported opcode：0x%x\n", opcode);
+                break;
+            }
+
+            System.out.println("inst="+inst);
+
         }
 
     }

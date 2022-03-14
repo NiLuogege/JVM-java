@@ -3,7 +3,7 @@ package com.niluogege.javajvm.instructions.base;
 
 import com.niluogege.javajvm.rtda.Frame;
 import com.niluogege.javajvm.rtda.OperandStack;
-
+import com.niluogege.javajvm.rtda.heap.methodarea.Object;
 /**
  * 没有操作数的指令
  */
