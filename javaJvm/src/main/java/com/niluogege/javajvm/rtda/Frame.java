@@ -50,4 +50,12 @@ public class Frame {
     public void setNextPc(int nextPc) {
         this.nextPc = nextPc;
     }
+
+    public Method method() {
+        return method;
+    }
+
+    public void setMethod(Method method) {
+        this.method = method;
+    }
 }

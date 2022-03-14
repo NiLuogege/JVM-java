@@ -47,6 +47,10 @@ import com.niluogege.javajvm.instructions.conversions.i2x.I2S;
 import com.niluogege.javajvm.instructions.conversions.l2x.L2D;
 import com.niluogege.javajvm.instructions.conversions.l2x.L2F;
 import com.niluogege.javajvm.instructions.conversions.l2x.L2I;
+import com.niluogege.javajvm.instructions.extended.GOTO_W;
+import com.niluogege.javajvm.instructions.extended.WIDE;
+import com.niluogege.javajvm.instructions.extended.ifnull.IFNONNULL;
+import com.niluogege.javajvm.instructions.extended.ifnull.IFNULL;
 import com.niluogege.javajvm.instructions.loads.aload.*;
 import com.niluogege.javajvm.instructions.loads.aload.ALOAD;
 import com.niluogege.javajvm.instructions.loads.dload.*;
@@ -57,6 +61,7 @@ import com.niluogege.javajvm.instructions.loads.iload.*;
 import com.niluogege.javajvm.instructions.loads.iload.ILOAD;
 import com.niluogege.javajvm.instructions.loads.lload.*;
 import com.niluogege.javajvm.instructions.loads.lload.LLOAD;
+import com.niluogege.javajvm.instructions.references.*;
 import com.niluogege.javajvm.instructions.stack.dup.DUP;
 import com.niluogege.javajvm.instructions.stack.dup.DUP2;
 import com.niluogege.javajvm.instructions.stack.dup.DUP2_X1;
@@ -122,7 +127,7 @@ public class Factory {
 
     public static Instruction newInstruction(byte opcode) {
 
-        switch (opcode){
+        switch (opcode) {
             case 0x00:
                 return new NOP();
             case 0x01:
@@ -469,18 +474,67 @@ public class Factory {
                 return new LOOKUP_SWITCH();
             case (byte) 0xac:
                 return new IRETURN();
-            case (byte)0xad:
+            case (byte) 0xad:
                 return new LRETURN();
-            case (byte)0xae:
+            case (byte) 0xae:
                 return new FRETURN();
-            case (byte)0xaf:
+            case (byte) 0xaf:
                 return new DRETURN();
-            case (byte)0xb0:
+            case (byte) 0xb0:
                 return new ARETURN();
-            case (byte)0xb1:
+            case (byte) 0xb1:
                 return new RETURN();
             case (byte) 0xb2: //获取指定类的静态字段，并将其压入栈顶
                 return new GET_STATIC();
+            case (byte) 0xb3:
+                return new PUT_STATIC();
+            case (byte) 0xb4:
+                return new GET_FIELD();
+            case (byte) 0xb5:
+                return new PUT_FIELD();
+            case (byte) 0xb6://调用 实例方法
+                return new INVOKE_VIRTUAL();
+            case (byte) 0xb7:
+                return new INVOKE_SPECIAL();
+            // case 0xb8:
+            // 	return &INVOKE_STATIC{}
+            // case 0xb9:
+            // 	return &INVOKE_INTERFACE{}
+            // case 0xba:
+            // 	return &INVOKE_DYNAMIC{}
+            case (byte) 0xbb:
+                return new NEW();
+            // case 0xbc:
+            // 	return &NEW_ARRAY{}
+            // case 0xbd:
+            // 	return &ANEW_ARRAY{}
+            // case 0xbe:
+            // 	return arraylength
+            // case 0xbf:
+            // 	return athrow
+            case (byte) 0xc0:
+                return new CHECK_CAST();
+            case (byte) 0xc1:
+                return new INSTANCE_OF();
+            // case 0xc2:
+            // 	return monitorenter
+            // case 0xc3:
+            // 	return monitorexit
+            case (byte) 0xc4:
+                return new WIDE();
+            // case 0xc5:
+            // 	return &MULTI_ANEW_ARRAY{}
+            case (byte) 0xc6:
+                return new IFNULL();
+            case (byte) 0xc7:
+                return new IFNONNULL();
+            case (byte) 0xc8:
+                return new GOTO_W();
+            // case 0xc9:
+            // 	return &JSR_W{}
+            // case 0xca: breakpoint
+            // case 0xfe: impdep1
+            // case 0xff: impdep2
             default:
                 return null;
         }

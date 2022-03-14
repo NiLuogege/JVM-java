@@ -1,5 +1,8 @@
 package com.niluogege.javajvm.rtda;
 
+
+import com.niluogege.javajvm.rtda.heap.methodarea.Object;
+
 /**
  * 操作数栈：里面要有 数据（Slot）
  */
