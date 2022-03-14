@@ -2,6 +2,7 @@ package com.niluogege.javajvm.instructions.base;
 
 
 import com.niluogege.javajvm.rtda.Frame;
+import com.niluogege.javajvm.rtda.OperandStack;
 
 /**
  * 没有操作数的指令
@@ -45,4 +46,49 @@ public class InstructionNoOperands implements Instruction {
         frame.localVars().setLong(idx, val);
     }
 
+    protected void _dcmp(Frame frame, boolean gFlag) {
+        OperandStack stack = frame.operandStack();
+        double v2 = stack.popDouble();
+        double v1 = stack.popDouble();
+        if (v1 > v2) {
+            stack.pushInt(1);
+            return;
+        }
+        if (v1 == v2) {
+            stack.pushInt(0);
+            return;
+        }
+        if (v1 < v2) {
+            stack.pushInt(-1);
+            return;
+        }
+        if (gFlag) {
+            stack.pushInt(1);
+            return;
+        }
+        stack.pushInt(-1);
+    }
+
+    protected void _fcmp(Frame frame, boolean gFlag) {
+        OperandStack stack = frame.operandStack();
+        double v2 = stack.popFloat();
+        double v1 = stack.popFloat();
+        if (v1 > v2) {
+            stack.pushInt(1);
+            return;
+        }
+        if (v1 == v2) {
+            stack.pushInt(0);
+            return;
+        }
+        if (v1 < v2) {
+            stack.pushInt(-1);
+            return;
+        }
+        if (gFlag) {
+            stack.pushInt(1);
+            return;
+        }
+        stack.pushInt(-1);
+    }
 }

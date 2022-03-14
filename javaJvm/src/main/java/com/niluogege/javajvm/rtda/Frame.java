@@ -39,7 +39,7 @@ public class Frame {
         return operandStack;
     }
 
-    public Thread getThread() {
+    public Thread thread() {
         return thread;
     }
 

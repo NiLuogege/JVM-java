@@ -16,7 +16,7 @@ public interface Instruction {
     //分支 ，如 if else ,for 循环等 都需要 切换分支
     //其实就是通过 offset 来移动 角标
     static void branch(Frame frame,int offset){
-        int pc = frame.getThread().getPc();
+        int pc = frame.thread().getPc();
         int nextPc= pc + offset;
         frame.setNextPc(nextPc);
     }
