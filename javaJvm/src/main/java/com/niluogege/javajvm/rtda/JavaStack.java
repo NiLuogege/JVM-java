@@ -57,4 +57,8 @@ public class JavaStack {
         }
         return this._top;
     }
+
+    public boolean isEmpty(){
+        return this._top == null;
+    }
 }

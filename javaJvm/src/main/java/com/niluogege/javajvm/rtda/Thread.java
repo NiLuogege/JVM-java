@@ -46,4 +46,8 @@ public class Thread {
     public int getPc() {
         return pc;
     }
+
+    public boolean isStackEmpty(){
+        return this.stack.isEmpty();
+    }
 }

@@ -53,6 +53,9 @@ public class Interpret {
 //            System.out.format("pc寄存器值 ：0x%x 对应的指令 %s => 当前Frame的局部变量表：%s 当前Frame的操作数栈：%s\n", opcode, inst.getClass().getSimpleName(), JSON.toJSONString(frame.localVars().getSlots()), JSON.toJSONString(frame.operandStack().getSlots()));
             logInstruction(frame, inst, opcode);
 
+            if (thread.isStackEmpty()) {
+                break;
+            }
         }
 
     }
