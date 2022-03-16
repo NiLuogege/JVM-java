@@ -21,18 +21,17 @@ public class Interpret {
     }
 
     private void loop(Thread thread, byte[] byteCode) {
-        //一个方法一个frame,同一个方法里的frame是共享的
-        Frame frame = thread.popFrame();
-
         BytecodeReader reader = new BytecodeReader();
 
         while (true) {
+            //获取线程栈顶 栈帧
+            Frame frame = thread.currentFrame();
             //获取下一个指定
             int pc = frame.nextPc();
             //pc 记录到 Thread
             thread.setPc(pc);
             //重置reader
-            reader.reset(byteCode, pc);
+            reader.reset(frame.method().code, pc);
             //读取操作指令代码
             byte opcode = reader.readByte();
             //将 指令代码 转换为 真正的指令
@@ -57,11 +56,12 @@ public class Interpret {
         }
 
     }
+
     private static void logInstruction(Frame frame, Instruction inst, byte opcode) {
         Method method = frame.method();
         String className = method.clazz().name;
         String methodName = method.name();
-        String outStr = ("frame="+frame+ "  " +className + "." + methodName + "() \t") +
+        String outStr = ("frame=" + frame + "  " + className + "." + methodName + "() \t") +
                 "寄存器(指令)：" + byteToHexString(new byte[]{opcode}) + " -> " + inst.getClass().getSimpleName() + " => 局部变量表：" + JSON.toJSONString(frame.localVars().getSlots()) + " 操作数栈：" + JSON.toJSONString(frame.operandStack().getSlots());
         System.out.println(outStr);
     }
