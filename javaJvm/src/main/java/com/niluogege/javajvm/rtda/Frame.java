@@ -58,4 +58,8 @@ public class Frame {
     public void setMethod(Method method) {
         this.method = method;
     }
+
+    public void revertNextPC() {
+        nextPc=thread.getPc();
+    }
 }

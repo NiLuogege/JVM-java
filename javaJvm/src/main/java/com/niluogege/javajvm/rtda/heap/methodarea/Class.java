@@ -21,6 +21,7 @@ public class Class {
     public int instanceSlotCount;//成员数据槽个数
     public int staticSlotCount;//静态数据槽个数
     public Slots staticVars;
+    public boolean initStarted;//是否已经初始化
 
 
     public Class(ClassFile classFile) {
@@ -31,6 +32,14 @@ public class Class {
         this.runTimeConstantPool=new RunTimeConstantPool(this,classFile.constantPool());
         this.fields=new Field().newFields(this,classFile.fields());
         this.methods =new Method().newMethods(this,classFile.methods());
+    }
+
+    public boolean initStarted(){
+        return this.initStarted;
+    }
+
+    public void startInit(){
+        this.initStarted = true;
     }
 
     public boolean isPublic() {
@@ -144,6 +153,11 @@ public class Class {
         }
         return false;
     }
+
+    public Method getClinitMethod(){
+        return this.getStaticMethod("<clinit>","()V");
+    }
+
     @Override
     public String toString() {
         return "Class{" +

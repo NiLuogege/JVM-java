@@ -26,6 +26,7 @@ import com.niluogege.javajvm.instructions.constants.consts.*;
 import com.niluogege.javajvm.instructions.constants.consts.ACONST_NULL;
 import com.niluogege.javajvm.instructions.constants.ipush.BIPUSH;
 import com.niluogege.javajvm.instructions.constants.ipush.SIPUSH;
+import com.niluogege.javajvm.instructions.constants.lbc.LDC2_W;
 import com.niluogege.javajvm.instructions.constants.nop.NOP;
 import com.niluogege.javajvm.instructions.control.GOTO;
 import com.niluogege.javajvm.instructions.control.LOOKUP_SWITCH;
@@ -130,7 +131,7 @@ public class Factory {
         switch (opcode) {
             case 0x00:
                 return new NOP();
-            case 0x01:
+            case 0x01://将null推至栈顶
                 return new ACONST_NULL();
             case 0x02:
                 return new ICONST_M1();
@@ -168,8 +169,8 @@ public class Factory {
             // 	return &LDC{}
             // case 0x13:
             // 	return &LDC_W{}
-            // case 0x14: //将long 或 double 类型数值 从常量池中推送至栈顶
-            // 	return &LDC2_W{}
+             case 0x14: //将long 或 double 类型数值 从常量池中推送至栈顶
+             	return new LDC2_W();
             case 0x15:
                 return new ILOAD();
             case 0x16:
@@ -330,7 +331,7 @@ public class Factory {
                 return new DADD();
             case 0x64:
                 return new ISUB();
-            case 0x65://将栈顶两个long类型数值相间再压入栈顶
+            case 0x65://将栈顶两个long类型数值相减再压入栈顶
                 return new LSUB();
             case 0x66:
                 return new FSUB();
@@ -474,7 +475,7 @@ public class Factory {
                 return new LOOKUP_SWITCH();
             case (byte) 0xac:
                 return new IRETURN();
-            case (byte) 0xad:
+            case (byte) 0xad://从当前方法返回long
                 return new LRETURN();
             case (byte) 0xae:
                 return new FRETURN();
@@ -496,8 +497,8 @@ public class Factory {
                 return new INVOKE_VIRTUAL();
             case (byte) 0xb7:
                 return new INVOKE_SPECIAL();
-            // case 0xb8:
-            // 	return &INVOKE_STATIC{}
+             case (byte)0xb8://invokestatic调用static方法
+             	return new INVOKE_STATIC();
             // case 0xb9:
             // 	return &INVOKE_INTERFACE{}
             // case 0xba:
