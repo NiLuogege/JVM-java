@@ -4,7 +4,7 @@ package com.niluogege.javajvm.instructions.comparisons.lcmp;
 import com.niluogege.javajvm.instructions.base.InstructionNoOperands;
 import com.niluogege.javajvm.rtda.Frame;
 import com.niluogege.javajvm.rtda.OperandStack;
-
+//比较两个long类型数值的大小，并将结果（1,0，-1）压入栈顶
 public class LCMP extends InstructionNoOperands {
 
     @Override

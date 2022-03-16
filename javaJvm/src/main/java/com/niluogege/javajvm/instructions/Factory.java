@@ -148,7 +148,7 @@ public class Factory {
                 return new ICONST_5();
             case 0x09:
                 return new LCONST_0();
-            case 0x0a:
+            case 0x0a://将long类型1 推送至栈顶
                 return new LCONST_1();
             case 0x0b:
                 return new FCONST_0();
@@ -168,7 +168,7 @@ public class Factory {
             // 	return &LDC{}
             // case 0x13:
             // 	return &LDC_W{}
-            // case 0x14:
+            // case 0x14: //将long 或 double 类型数值 从常量池中推送至栈顶
             // 	return &LDC2_W{}
             case 0x15:
                 return new ILOAD();
@@ -188,7 +188,7 @@ public class Factory {
                 return new ILOAD_2();
             case 0x1d:
                 return new ILOAD_3();
-            case 0x1e:
+            case 0x1e://局部变量表中获取第一个 long 类型的值 并 推到操作栈中
                 return new LLOAD_0();
             case 0x1f:
                 return new LLOAD_1();
@@ -330,7 +330,7 @@ public class Factory {
                 return new DADD();
             case 0x64:
                 return new ISUB();
-            case 0x65:
+            case 0x65://将栈顶两个long类型数值相间再压入栈顶
                 return new LSUB();
             case 0x66:
                 return new FSUB();
@@ -424,7 +424,7 @@ public class Factory {
                 return new I2C();
             case (byte) 0x93:
                 return new I2S();
-            case (byte) 0x94:
+            case (byte) 0x94://比较两个long类型数值的大小，并将结果（1,0，-1）压入栈顶
                 return new LCMP();
             case (byte) 0x95:
                 return new FCMPL();
@@ -442,7 +442,7 @@ public class Factory {
                 return new IFLT();
             case (byte) 0x9c:
                 return new IFGE();
-            case (byte) 0x9d:
+            case (byte) 0x9d://当栈顶int数值大于0时跳转
                 return new IFGT();
             case (byte) 0x9e:
                 return new IFLE();
