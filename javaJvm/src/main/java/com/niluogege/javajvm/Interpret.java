@@ -51,8 +51,32 @@ public class Interpret {
             //执行
             inst.execute(frame);
 
-            System.out.format("pc寄存器值 ：0x%x 对应的指令 %s => 当前Frame的局部变量表：%s 当前Frame的操作数栈：%s\n", opcode, inst.getClass().getSimpleName(), JSON.toJSONString(frame.localVars().getSlots()), JSON.toJSONString(frame.operandStack().getSlots()));
+//            System.out.format("pc寄存器值 ：0x%x 对应的指令 %s => 当前Frame的局部变量表：%s 当前Frame的操作数栈：%s\n", opcode, inst.getClass().getSimpleName(), JSON.toJSONString(frame.localVars().getSlots()), JSON.toJSONString(frame.operandStack().getSlots()));
+            logInstruction(frame, inst, opcode);
+
         }
 
+    }
+    private static void logInstruction(Frame frame, Instruction inst, byte opcode) {
+        Method method = frame.method();
+        String className = method.clazz().name;
+        String methodName = method.name();
+        String outStr = ("frame="+frame+ "  " +className + "." + methodName + "() \t") +
+                "寄存器(指令)：" + byteToHexString(new byte[]{opcode}) + " -> " + inst.getClass().getSimpleName() + " => 局部变量表：" + JSON.toJSONString(frame.localVars().getSlots()) + " 操作数栈：" + JSON.toJSONString(frame.operandStack().getSlots());
+        System.out.println(outStr);
+    }
+
+    private static String byteToHexString(byte[] codes) {
+        StringBuilder sb = new StringBuilder();
+        sb.append("0x");
+        for (byte b : codes) {
+            int value = b & 0xFF;
+            String strHex = Integer.toHexString(value);
+            if (strHex.length() < 2) {
+                strHex = "0" + strHex;
+            }
+            sb.append(strHex);
+        }
+        return sb.toString();
     }
 }
