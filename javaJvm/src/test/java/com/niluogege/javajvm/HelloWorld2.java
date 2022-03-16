@@ -23,7 +23,7 @@ package com.niluogege.javajvm;
 public class HelloWorld2 {
 
     public static void main(String[] args) {
-        long x = fibonacci(10);
+        long x = fibonacci(4);
         System.out.println(x);
     }
 
