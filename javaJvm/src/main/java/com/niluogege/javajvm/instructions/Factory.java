@@ -161,7 +161,7 @@ public class Factory {
                 return new DCONST_0();
             case 0x0f:
                 return new DCONST_1();
-            case 0x10: //bipush指令从操作数中获取一个byte型整数，扩展成int型，然后推入栈顶。
+            case 0x10: //获取到操作数并入栈
                 return new BIPUSH();
             case 0x11:
                 return new SIPUSH();
@@ -215,7 +215,7 @@ public class Factory {
                 return new DLOAD_3();
             case 0x2a:
                 return new ALOAD_0();
-            case 0x2b:
+            case 0x2b://将第二个引用类型本地变量推送至栈顶
                 return new ALOAD_1();
             case 0x2c:
                 return new ALOAD_2();
@@ -287,7 +287,7 @@ public class Factory {
                 return new ASTORE_2();
             case 0x4e:
                 return new ASTORE_3();
-            //case 0x4f:
+            //case 0x4f://将栈顶int类型数值存入指定数组的指定索引位置
             //	return new IASTORE();
             // case 0x50:
             // 	return lastore

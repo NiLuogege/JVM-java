@@ -5,6 +5,7 @@ import com.niluogege.javajvm.instructions.base.Instruction;
 import com.niluogege.javajvm.rtda.Frame;
 
 //bipush指令从操作数中获取一个byte型整数，扩展成int型，然后推入栈顶。
+//简而言之就是 获取到操作数并入栈
 public class BIPUSH implements Instruction {
 
     private byte val;
