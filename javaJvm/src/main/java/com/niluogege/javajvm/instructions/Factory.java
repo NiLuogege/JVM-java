@@ -135,7 +135,7 @@ public class Factory {
                 return new ACONST_NULL();
             case 0x02:
                 return new ICONST_M1();
-            case 0x03:
+            case 0x03: //操作数栈 入栈一个 0
                 return new ICONST_0();
             case 0x04:
                 return new ICONST_1();
@@ -161,7 +161,7 @@ public class Factory {
                 return new DCONST_0();
             case 0x0f:
                 return new DCONST_1();
-            case 0x10:
+            case 0x10: //bipush指令从操作数中获取一个byte型整数，扩展成int型，然后推入栈顶。
                 return new BIPUSH();
             case 0x11:
                 return new SIPUSH();
