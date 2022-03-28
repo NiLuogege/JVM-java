@@ -143,7 +143,7 @@ public class Factory {
                 return new ICONST_2();
             case 0x06: //操作数栈 入栈一个 3
                 return new ICONST_3();
-            case 0x07:
+            case 0x07: //操作数栈 入栈一个 4
                 return new ICONST_4();
             case 0x08: //操作数栈 入栈一个 5
                 return new ICONST_5();
@@ -307,7 +307,7 @@ public class Factory {
                 return new POP();
             case 0x58:
                 return new POP2();
-            case 0x59:
+            case 0x59://复制栈定数值应将其复制值压入栈顶
                 return new DUP();
             case 0x5a:
                 return new DUP_X1();
@@ -505,7 +505,7 @@ public class Factory {
             // 	return &INVOKE_DYNAMIC{}
             case (byte) 0xbb:
                 return new NEW();
-            // case 0xbc:
+            // case 0xbc: //创建数组
             // 	return &NEW_ARRAY{}
             // case 0xbd:
             // 	return &ANEW_ARRAY{}

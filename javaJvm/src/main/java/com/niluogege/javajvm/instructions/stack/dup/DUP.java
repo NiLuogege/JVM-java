@@ -6,7 +6,7 @@ import com.niluogege.javajvm.rtda.Frame;
 import com.niluogege.javajvm.rtda.OperandStack;
 import com.niluogege.javajvm.rtda.Slot;
 
-//duplicate the lop operand stack value
+//复制栈定数值应将其复制值压入栈顶
 /*
 bottom -> top
 [...][c][b][a]
