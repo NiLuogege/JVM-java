@@ -137,7 +137,7 @@ public class Factory {
                 return new ICONST_M1();
             case 0x03: //操作数栈 入栈一个 0
                 return new ICONST_0();
-            case 0x04:
+            case 0x04: //操作数栈 入栈一个 1
                 return new ICONST_1();
             case 0x05: //操作数栈 入栈一个 2
                 return new ICONST_2();
@@ -169,9 +169,9 @@ public class Factory {
             // 	return &LDC{}
             // case 0x13:
             // 	return &LDC_W{}
-             case 0x14: //将long 或 double 类型数值 从常量池中推送至栈顶
-             	return new LDC2_W();
-            case 0x15:
+            case 0x14: //将long 或 double 类型数值 从常量池中推送至栈顶
+                return new LDC2_W();
+            case 0x15: //读一个 int 数到 操作数栈
                 return new ILOAD();
             case 0x16:
                 return new LLOAD();
@@ -213,7 +213,7 @@ public class Factory {
                 return new DLOAD_2();
             case 0x29:
                 return new DLOAD_3();
-            case 0x2a:
+            case 0x2a://将第1个引用类型本地变量推送至栈顶
                 return new ALOAD_0();
             case 0x2b://将第二个引用类型本地变量推送至栈顶
                 return new ALOAD_1();
@@ -221,7 +221,7 @@ public class Factory {
                 return new ALOAD_2();
             case 0x2d:
                 return new ALOAD_3();
-            // case 0x2e:
+            // case 0x2e: //将int数组的指定元素推导栈定
             // 	return iaload
             // case 0x2f:
             // 	return laload
@@ -237,7 +237,7 @@ public class Factory {
             // 	return caload
             // case 0x35:
             // 	return saload
-            case 0x36:
+            case 0x36: //把操作数栈中的idx对应下标的数 存到 本地变量表中
                 return new ISTORE();
             case 0x37:
                 return new LSTORE();
@@ -329,7 +329,7 @@ public class Factory {
                 return new FADD();
             case 0x63:
                 return new DADD();
-            case 0x64:
+            case 0x64: //将栈定两数值相减并压入栈定
                 return new ISUB();
             case 0x65://将栈顶两个long类型数值相减再压入栈顶
                 return new LSUB();
@@ -435,7 +435,7 @@ public class Factory {
                 return new DCMPL();
             case (byte) 0x98:
                 return new DCMPG();
-            case (byte) 0x99:
+            case (byte) 0x99://当栈定int数值 等于 0 时 跳转
                 return new IFEQ();
             case (byte) 0x9a:
                 return new IFNE();
@@ -453,7 +453,7 @@ public class Factory {
                 return new IF_ICMPNE();
             case (byte) 0xa1:
                 return new IF_ICMPLT();
-            case (byte) 0xa2:
+            case (byte) 0xa2://比较栈顶两个 int 数大小，当前者大于等于后者时跳转
                 return new IF_ICMPGE();
             case (byte) 0xa3: //比较栈顶两个 int 数大小，当前者大于后者时跳转
                 return new IF_ICMPGT();
@@ -497,8 +497,8 @@ public class Factory {
                 return new INVOKE_VIRTUAL();
             case (byte) 0xb7:
                 return new INVOKE_SPECIAL();
-             case (byte)0xb8://invokestatic调用static方法
-             	return new INVOKE_STATIC();
+            case (byte) 0xb8://invokestatic调用static方法
+                return new INVOKE_STATIC();
             // case 0xb9:
             // 	return &INVOKE_INTERFACE{}
             // case 0xba:
@@ -509,8 +509,8 @@ public class Factory {
             // 	return &NEW_ARRAY{}
             // case 0xbd:
             // 	return &ANEW_ARRAY{}
-            // case 0xbe:
-            // 	return arraylength
+            // case 0xbe: //获得数组长度并压入栈定
+            // 	return ARRAY_LENGTH
             // case 0xbf:
             // 	return athrow
             case (byte) 0xc0:
